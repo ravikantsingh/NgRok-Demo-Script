@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        li {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+        }
+        li:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        a {
+            text-decoration: none;
+            color: #34495e;
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 18px;
+        }
+        .os-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Connected Clients</h1>
+    <ul>
+        {% for client in clients %}
+        <li>
+            <!-- Dynamically display OS icons -->
+            <i class="os-icon fa-brands fa-{{ 'linux' if 'Linux' in client.os else 'windows' if 'Windows' in client.os else 'android' }}"></i>
+            <a href="/client/{{ client.id }}">{{ client.id }} ({{ client.os }})</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
